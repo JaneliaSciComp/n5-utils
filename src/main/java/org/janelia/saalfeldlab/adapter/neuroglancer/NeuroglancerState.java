@@ -2,8 +2,9 @@ package org.janelia.saalfeldlab.adapter.neuroglancer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true) // Ignore properties not defined in this class
 public class NeuroglancerState {
 
     @JsonProperty("dimensions")

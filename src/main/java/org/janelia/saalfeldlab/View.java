@@ -180,7 +180,7 @@ import picocli.CommandLine.Option;
  */
 public class View implements Callable<Void> {
 
-	protected static class ReaderInfo {
+	public static class ReaderInfo {
 
 		public final N5Reader n5;
 		public final String[] groupNames;
@@ -507,12 +507,12 @@ public class View implements Callable<Void> {
 		return (int)((v * xs[k] + u * xs[l]) * 255.0 + 0.5);
 	}
 
-	private static final int argb(final int r, final int g, final int b, final int alpha) {
+	protected static final int argb(final int r, final int g, final int b, final int alpha) {
 
 		return (((r << 8) | g) << 8) | b | alpha;
 	}
 
-	private static final int argb(final long id) {
+	protected static final int argb(final long id) {
 
 		double x = getDouble(id);
 		x *= 6.0;
@@ -528,13 +528,13 @@ public class View implements Callable<Void> {
 		return argb( r, g, b, 0xff );
 	}
 
-	public static final void main(final String... args) {
+	public static void main(final String... args) {
 
 		new CommandLine(new View()).execute(singlePathToArgs(args));
 	}
 
 	// hash code from https://stackoverflow.com/questions/664014/what-integer-hash-function-are-good-that-accepts-an-integer-hash-key
-	private static final int hash(final int id) {
+	protected static final int hash(final int id) {
 		int x = ((id >>> 16) ^ id) * 0x45d9f3b;
 		x = ((x >>> 16) ^ x) * 0x45d9f3b;
 		x = (x >>> 16) ^ x;
@@ -551,7 +551,7 @@ public class View implements Callable<Void> {
 	 * a source component is mapped to several target components!</em>
 	 * </p>
 	 */
-	private static final <T> IntervalView<T> permuteAll(final RandomAccessibleInterval<T> interval, final int... axes) {
+	protected static final <T> IntervalView<T> permuteAll(final RandomAccessibleInterval<T> interval, final int... axes) {
 
 		final int n = interval.numDimensions();
 
@@ -592,7 +592,7 @@ public class View implements Callable<Void> {
 		return new MixedTransformView<T>(randomAccessible, t);
 	}
 
-	private static final int[] allAxes(final int[] axes, final int n) {
+	protected static final int[] allAxes(final int[] axes, final int n) {
 
 		final int[] sortedAxes = axes.clone();
 		Arrays.sort(sortedAxes);

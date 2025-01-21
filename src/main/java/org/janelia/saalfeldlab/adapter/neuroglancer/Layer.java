@@ -1,10 +1,12 @@
 package org.janelia.saalfeldlab.adapter.neuroglancer;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true) // Ignore properties not defined in this class
 public class Layer {
 
     @JsonProperty("type")
@@ -12,6 +14,9 @@ public class Layer {
 
     @JsonProperty("source")
     private String source;
+
+    @JsonProperty("opacity")
+    private Double opacity;
 
     @JsonProperty("tab")
     private String tab;
@@ -23,13 +28,14 @@ public class Layer {
     private List<String> segments;
 
     @JsonProperty("visible")
-    private Boolean visible;
+    private Boolean visible = true;
 
     @JsonProperty("crossSectionRenderScale")
     private Double crossSectionRenderScale;
 
     @JsonProperty("segmentQuery")
     private String segmentQuery;
+
 
     // Getters and Setters
 
@@ -74,7 +80,7 @@ public class Layer {
         this.segments = segments;
     }
 
-    public Boolean getVisible() {
+    public Boolean isVisible() {
         return visible;
     }
 
@@ -96,5 +102,13 @@ public class Layer {
 
     public void setSegmentQuery(String segmentQuery) {
         this.segmentQuery = segmentQuery;
+    }
+
+    public Double getOpacity() {
+        return opacity;
+    }
+
+    public void setOpacity(Double opacity) {
+        this.opacity = opacity;
     }
 }

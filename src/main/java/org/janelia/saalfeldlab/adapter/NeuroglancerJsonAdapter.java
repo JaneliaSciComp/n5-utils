@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import org.janelia.saalfeldlab.adapter.neuroglancer.NeuroglancerState;
-
+import org.janelia.saalfeldlab.adapter.neuroglancer.NeuroglancerViewer;
 
 public class NeuroglancerJsonAdapter {
 
@@ -59,11 +59,13 @@ public class NeuroglancerJsonAdapter {
     }
 
     public static void main(String[] args) {
-        private String filePath = "/Users/zouinkhim/Desktop/java/n5-utils/src/main/resources/neuroglancer_state.json";
+        String filePath = "/Users/zouinkhim/Desktop/java/n5-utils/src/main/resources/neuroglancer_state.json";
         NeuroglancerJsonAdapter adapter = new NeuroglancerJsonAdapter();
         try {
             NeuroglancerState state = adapter.importFromJson(filePath);
-            
+            NeuroglancerViewer viewer = new NeuroglancerViewer(state);
+
+
             System.out.println(adapter.exportToJsonString(state));
         } catch (IOException e) {
             e.printStackTrace();

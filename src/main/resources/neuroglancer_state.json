@@ -1,0 +1,70 @@
+{
+  "dimensions": {
+    "x": [
+      1e-9,
+      "m"
+    ],
+    "y": [
+      1e-9,
+      "m"
+    ],
+    "z": [
+      1e-9,
+      "m"
+    ]
+  },
+  "position": [
+    92816.8671875,
+    90937.5,
+    177779.5
+  ],
+  "crossSectionScale": 3.5568517896626575,
+  "projectionOrientation": [
+    -0.04007825255393982,
+    0.09057677537202835,
+    0.0670379251241684,
+    0.992821991443634
+  ],
+  "projectionScale": 405229.03647394245,
+  "layers": [
+    {
+      "type": "image",
+      "source": "zarr://https://cellmap-vm1.int.janelia.org/nrs/data/jrc_mus-liver-zon-2/jrc_mus-liver-zon-2.zarr/recon-1/em/fibsem-uint8/",
+      "tab": "source",
+      "name": "fibsem-uint8"
+    },
+    {
+      "type": "segmentation",
+      "source": "zarr://https://cellmap-vm1.int.janelia.org/nrs/data/jrc_mus-liver-zon-2/jrc_mus-liver-zon-2.zarr/recon-1/labels/inference/segmentations/cell/",
+      "tab": "source",
+      "segments": [],
+      "name": "cell",
+      "visible": false
+    },
+    {
+      "type": "segmentation",
+      "source": "zarr://https://cellmap-vm1.int.janelia.org:/nrs/zouinkhim/liver_zonation/jrc_mus-liver-zon-2_postprocessed_uint8.zarr",
+      "tab": "source",
+      "crossSectionRenderScale": 2.519842099789746,
+      "segments": [],
+      "name": "jrc_mus-liver-zon-2_postprocessed_uint8.zarr"
+    },
+    {
+      "type": "segmentation",
+      "source": "n5://https://h06u04.int.janelia.org:8000/test.n5/ecsDilation_2_cellErosion_3",
+      "tab": "source",
+      "segments": [
+        "2",
+        "1"
+      ],
+      "segmentQuery": "2",
+      "name": "postprocessing",
+      "visible": false
+    }
+  ],
+  "selectedLayer": {
+    "visible": true,
+    "layer": "fibsem-uint8"
+  },
+  "layout": "4panel"
+}

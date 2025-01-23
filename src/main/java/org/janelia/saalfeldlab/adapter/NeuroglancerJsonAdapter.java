@@ -3,6 +3,11 @@ package org.janelia.saalfeldlab.adapter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
+import org.janelia.saalfeldlab.View.ReaderInfo;
+import org.janelia.saalfeldlab.adapter.neuroglancer.Layer;
+import org.janelia.saalfeldlab.adapter.neuroglancer.LayerToReaderInfoConverter;
 import org.janelia.saalfeldlab.adapter.neuroglancer.NeuroglancerState;
 import org.janelia.saalfeldlab.adapter.neuroglancer.NeuroglancerViewer;
 
@@ -62,11 +67,16 @@ public class NeuroglancerJsonAdapter {
         String filePath = "/Users/zouinkhim/Desktop/java/n5-utils/src/main/resources/neuroglancer_state.json";
         NeuroglancerJsonAdapter adapter = new NeuroglancerJsonAdapter();
         try {
-            NeuroglancerState state = adapter.importFromJson(filePath);
-            NeuroglancerViewer viewer = new NeuroglancerViewer(state);
+            NeuroglancerState neuroglancerState = adapter.importFromJson(filePath);
+            System.out.println(adapter.exportToJsonString(neuroglancerState));
+
+            List<Layer> layers = neuroglancerState.getLayers();
+
+            List<ReaderInfo> readerInfos = LayerToReaderInfoConverter.convertLayersToReaderInfos(layers);
+            NeuroglancerViewer viewer = new NeuroglancerViewer(readerInfos);
 
 
-            System.out.println(adapter.exportToJsonString(state));
+            
         } catch (IOException e) {
             e.printStackTrace();
     }

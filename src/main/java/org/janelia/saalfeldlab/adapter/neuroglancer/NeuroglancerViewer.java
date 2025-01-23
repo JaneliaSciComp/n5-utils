@@ -46,7 +46,7 @@ import java.util.List;
  */
 public class NeuroglancerViewer extends View{
 
-    private NeuroglancerState neuroglancerState;
+    private List<ReaderInfo> readerInfos;
     private BdvStackSource<?> bdv;
     private BdvOptions options;
 
@@ -56,8 +56,9 @@ public class NeuroglancerViewer extends View{
      * @param state The NeuroglancerState to visualize.
           * @throws IOException 
           */
-         public NeuroglancerViewer(NeuroglancerState state) throws IOException {
-        this.neuroglancerState = state;
+         public NeuroglancerViewer(List<ReaderInfo> readerInfos) throws IOException {
+            
+        this.readerInfos = readerInfos;
         initializeBdv();
     }
 
@@ -100,9 +101,7 @@ public class NeuroglancerViewer extends View{
           * @throws IOException 
           */
          private void addLayers() throws IOException {
-        List<Layer> layers = neuroglancerState.getLayers();
 
-        List<ReaderInfo> readerInfos = LayerToReaderInfoConverter.convertLayersToReaderInfos(layers);
         int[] axes = new int[]{0, 1, 2, 3};
 
         final int numProc = Runtime.getRuntime().availableProcessors();

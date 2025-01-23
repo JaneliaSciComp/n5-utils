@@ -74,9 +74,6 @@ public class NeuroglancerJsonAdapter {
 
             List<ReaderInfo> readerInfos = LayerToReaderInfoConverter.convertLayersToReaderInfos(layers);
             NeuroglancerViewer viewer = new NeuroglancerViewer(readerInfos);
-
-
-            
         } catch (IOException e) {
             e.printStackTrace();
     }

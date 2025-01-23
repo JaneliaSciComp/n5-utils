@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Represents the complete state of a Neuroglancer instance.
  * This class aligns with the ViewerState schema defined in viewer_state.yaml.
+ * from https://github.com/google/neuroglancer/tree/90e8ace9900e01d1669d33b68c2054730bb78991/docs/json_schema
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true) // Ignore properties not defined in this class
